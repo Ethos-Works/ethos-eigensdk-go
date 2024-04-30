@@ -45,6 +45,48 @@ var ContractServiceManagerBaseMetaData = &bind.MetaData{
 // Deprecated: Use ContractServiceManagerBaseMetaData.ABI instead.
 var ContractServiceManagerBaseABI = ContractServiceManagerBaseMetaData.ABI
 
+// ContractServiceManagerBaseMethods is an auto generated interface around an Ethereum contract.
+type ContractServiceManagerBaseMethods interface {
+	ContractServiceManagerBaseCalls
+	ContractServiceManagerBaseTransacts
+	ContractServiceManagerBaseFilters
+}
+
+// ContractServiceManagerBaseCalls is an auto generated interface that defines the call methods available for an Ethereum contract.
+type ContractServiceManagerBaseCalls interface {
+	AvsDirectory(opts *bind.CallOpts) (common.Address, error)
+
+	GetOperatorRestakedStrategies(opts *bind.CallOpts, operator common.Address) ([]common.Address, error)
+
+	GetRestakeableStrategies(opts *bind.CallOpts) ([]common.Address, error)
+
+	Owner(opts *bind.CallOpts) (common.Address, error)
+}
+
+// ContractServiceManagerBaseTransacts is an auto generated interface that defines the transact methods available for an Ethereum contract.
+type ContractServiceManagerBaseTransacts interface {
+	DeregisterOperatorFromAVS(opts *bind.TransactOpts, operator common.Address) (*types.Transaction, error)
+
+	RegisterOperatorToAVS(opts *bind.TransactOpts, operator common.Address, operatorSignature ISignatureUtilsSignatureWithSaltAndExpiry) (*types.Transaction, error)
+
+	RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error)
+
+	TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error)
+
+	UpdateAVSMetadataURI(opts *bind.TransactOpts, _metadataURI string) (*types.Transaction, error)
+}
+
+// ContractServiceManagerBaseFilterer is an auto generated interface that defines the log filtering methods available for an Ethereum contract.
+type ContractServiceManagerBaseFilters interface {
+	FilterInitialized(opts *bind.FilterOpts) (*ContractServiceManagerBaseInitializedIterator, error)
+	WatchInitialized(opts *bind.WatchOpts, sink chan<- *ContractServiceManagerBaseInitialized) (event.Subscription, error)
+	ParseInitialized(log types.Log) (*ContractServiceManagerBaseInitialized, error)
+
+	FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*ContractServiceManagerBaseOwnershipTransferredIterator, error)
+	WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *ContractServiceManagerBaseOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error)
+	ParseOwnershipTransferred(log types.Log) (*ContractServiceManagerBaseOwnershipTransferred, error)
+}
+
 // ContractServiceManagerBase is an auto generated Go binding around an Ethereum contract.
 type ContractServiceManagerBase struct {
 	ContractServiceManagerBaseCaller     // Read-only binding to the contract
@@ -52,20 +94,32 @@ type ContractServiceManagerBase struct {
 	ContractServiceManagerBaseFilterer   // Log filterer for contract events
 }
 
+// ContractServiceManagerBase implements the ContractServiceManagerBaseMethods interface.
+var _ ContractServiceManagerBaseMethods = (*ContractServiceManagerBase)(nil)
+
 // ContractServiceManagerBaseCaller is an auto generated read-only Go binding around an Ethereum contract.
 type ContractServiceManagerBaseCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
+
+// ContractServiceManagerBaseCaller implements the ContractServiceManagerBaseCalls interface.
+var _ ContractServiceManagerBaseCalls = (*ContractServiceManagerBaseCaller)(nil)
 
 // ContractServiceManagerBaseTransactor is an auto generated write-only Go binding around an Ethereum contract.
 type ContractServiceManagerBaseTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
+// ContractServiceManagerBaseTransactor implements the ContractServiceManagerBaseTransacts interface.
+var _ ContractServiceManagerBaseTransacts = (*ContractServiceManagerBaseTransactor)(nil)
+
 // ContractServiceManagerBaseFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
 type ContractServiceManagerBaseFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
+
+// ContractServiceManagerBaseFilterer implements the ContractServiceManagerBaseFilters interface.
+var _ ContractServiceManagerBaseFilters = (*ContractServiceManagerBaseFilterer)(nil)
 
 // ContractServiceManagerBaseSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.

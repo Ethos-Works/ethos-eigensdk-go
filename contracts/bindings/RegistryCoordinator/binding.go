@@ -99,6 +99,156 @@ func DeployContractRegistryCoordinator(auth *bind.TransactOpts, backend bind.Con
 	return address, tx, &ContractRegistryCoordinator{ContractRegistryCoordinatorCaller: ContractRegistryCoordinatorCaller{contract: contract}, ContractRegistryCoordinatorTransactor: ContractRegistryCoordinatorTransactor{contract: contract}, ContractRegistryCoordinatorFilterer: ContractRegistryCoordinatorFilterer{contract: contract}}, nil
 }
 
+// ContractRegistryCoordinatorMethods is an auto generated interface around an Ethereum contract.
+type ContractRegistryCoordinatorMethods interface {
+	ContractRegistryCoordinatorCalls
+	ContractRegistryCoordinatorTransacts
+	ContractRegistryCoordinatorFilters
+}
+
+// ContractRegistryCoordinatorCalls is an auto generated interface that defines the call methods available for an Ethereum contract.
+type ContractRegistryCoordinatorCalls interface {
+	OPERATORCHURNAPPROVALTYPEHASH(opts *bind.CallOpts) ([32]byte, error)
+
+	PUBKEYREGISTRATIONTYPEHASH(opts *bind.CallOpts) ([32]byte, error)
+
+	CalculateOperatorChurnApprovalDigestHash(opts *bind.CallOpts, registeringOperator common.Address, operatorKickParams []IRegistryCoordinatorOperatorKickParam, salt [32]byte, expiry *big.Int) ([32]byte, error)
+
+	ChurnApprover(opts *bind.CallOpts) (common.Address, error)
+
+	Ejector(opts *bind.CallOpts) (common.Address, error)
+
+	GetCurrentQuorumBitmap(opts *bind.CallOpts, operator common.Address) (*big.Int, error)
+
+	GetOperator(opts *bind.CallOpts, operator common.Address) (IRegistryCoordinatorOperatorInfo, error)
+
+	GetOperatorSetParams(opts *bind.CallOpts, quorumNumber uint8) (IRegistryCoordinatorOperatorSetParam, error)
+
+	GetOperatorStatus(opts *bind.CallOpts, operator common.Address) (uint8, error)
+
+	GetQuorumBitmapAtBlockNumberByIndex(opts *bind.CallOpts, operator common.Address, blockNumber uint32, index *big.Int) (*big.Int, error)
+
+	GetQuorumBitmapHistoryLength(opts *bind.CallOpts, operator common.Address) (*big.Int, error)
+
+	GetQuorumBitmapIndicesAtBlockNumber(opts *bind.CallOpts, blockNumber uint32, operators []common.Address) ([]uint32, error)
+
+	GetQuorumBitmapUpdateByIndex(opts *bind.CallOpts, operator common.Address, index *big.Int) (IRegistryCoordinatorQuorumBitmapUpdate, error)
+
+	IndexRegistry(opts *bind.CallOpts) (common.Address, error)
+
+	IsChurnApproverSaltUsed(opts *bind.CallOpts, arg0 [32]byte) (bool, error)
+
+	NumRegistries(opts *bind.CallOpts) (*big.Int, error)
+
+	Owner(opts *bind.CallOpts) (common.Address, error)
+
+	Paused(opts *bind.CallOpts, index uint8) (bool, error)
+
+	Paused0(opts *bind.CallOpts) (*big.Int, error)
+
+	PauserRegistry(opts *bind.CallOpts) (common.Address, error)
+
+	QuorumCount(opts *bind.CallOpts) (uint8, error)
+
+	QuorumUpdateBlockNumber(opts *bind.CallOpts, arg0 uint8) (*big.Int, error)
+
+	Registries(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error)
+
+	ServiceManager(opts *bind.CallOpts) (common.Address, error)
+
+	StakeRegistry(opts *bind.CallOpts) (common.Address, error)
+}
+
+// ContractRegistryCoordinatorTransacts is an auto generated interface that defines the transact methods available for an Ethereum contract.
+type ContractRegistryCoordinatorTransacts interface {
+	CreateQuorum(opts *bind.TransactOpts, operatorSetParams IRegistryCoordinatorOperatorSetParam, minimumStake *big.Int, strategyParams []IStakeRegistryStrategyParams) (*types.Transaction, error)
+
+	DeregisterOperator(opts *bind.TransactOpts, quorumNumbers []byte) (*types.Transaction, error)
+
+	EjectOperator(opts *bind.TransactOpts, operator common.Address, quorumNumbers []byte) (*types.Transaction, error)
+
+	Initialize(opts *bind.TransactOpts, _initialOwner common.Address, _churnApprover common.Address, _ejector common.Address, _pauserRegistry common.Address, _initialPausedStatus *big.Int, _operatorSetParams []IRegistryCoordinatorOperatorSetParam, _minimumStakes []*big.Int, _strategyParams [][]IStakeRegistryStrategyParams) (*types.Transaction, error)
+
+	Pause(opts *bind.TransactOpts, newPausedStatus *big.Int) (*types.Transaction, error)
+
+	PauseAll(opts *bind.TransactOpts) (*types.Transaction, error)
+
+	RegisterOperator(opts *bind.TransactOpts, quorumNumbers []byte, socket string, operatorSignature ISignatureUtilsSignatureWithSaltAndExpiry) (*types.Transaction, error)
+
+	RegisterOperatorWithChurn(opts *bind.TransactOpts, quorumNumbers []byte, socket string, operatorKickParams []IRegistryCoordinatorOperatorKickParam, churnApproverSignature ISignatureUtilsSignatureWithSaltAndExpiry, operatorSignature ISignatureUtilsSignatureWithSaltAndExpiry) (*types.Transaction, error)
+
+	RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error)
+
+	SetChurnApprover(opts *bind.TransactOpts, _churnApprover common.Address) (*types.Transaction, error)
+
+	SetEjector(opts *bind.TransactOpts, _ejector common.Address) (*types.Transaction, error)
+
+	SetOperatorSetParams(opts *bind.TransactOpts, quorumNumber uint8, operatorSetParams IRegistryCoordinatorOperatorSetParam) (*types.Transaction, error)
+
+	SetPauserRegistry(opts *bind.TransactOpts, newPauserRegistry common.Address) (*types.Transaction, error)
+
+	TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error)
+
+	Unpause(opts *bind.TransactOpts, newPausedStatus *big.Int) (*types.Transaction, error)
+
+	UpdateOperators(opts *bind.TransactOpts, operators []common.Address) (*types.Transaction, error)
+
+	UpdateOperatorsForQuorum(opts *bind.TransactOpts, operatorsPerQuorum [][]common.Address, quorumNumbers []byte) (*types.Transaction, error)
+
+	UpdateSocket(opts *bind.TransactOpts, socket string) (*types.Transaction, error)
+}
+
+// ContractRegistryCoordinatorFilterer is an auto generated interface that defines the log filtering methods available for an Ethereum contract.
+type ContractRegistryCoordinatorFilters interface {
+	FilterChurnApproverUpdated(opts *bind.FilterOpts) (*ContractRegistryCoordinatorChurnApproverUpdatedIterator, error)
+	WatchChurnApproverUpdated(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorChurnApproverUpdated) (event.Subscription, error)
+	ParseChurnApproverUpdated(log types.Log) (*ContractRegistryCoordinatorChurnApproverUpdated, error)
+
+	FilterEjectorUpdated(opts *bind.FilterOpts) (*ContractRegistryCoordinatorEjectorUpdatedIterator, error)
+	WatchEjectorUpdated(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorEjectorUpdated) (event.Subscription, error)
+	ParseEjectorUpdated(log types.Log) (*ContractRegistryCoordinatorEjectorUpdated, error)
+
+	FilterInitialized(opts *bind.FilterOpts) (*ContractRegistryCoordinatorInitializedIterator, error)
+	WatchInitialized(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorInitialized) (event.Subscription, error)
+	ParseInitialized(log types.Log) (*ContractRegistryCoordinatorInitialized, error)
+
+	FilterOperatorDeregistered(opts *bind.FilterOpts, operator []common.Address) (*ContractRegistryCoordinatorOperatorDeregisteredIterator, error)
+	WatchOperatorDeregistered(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorOperatorDeregistered, operator []common.Address) (event.Subscription, error)
+	ParseOperatorDeregistered(log types.Log) (*ContractRegistryCoordinatorOperatorDeregistered, error)
+
+	FilterOperatorRegistered(opts *bind.FilterOpts, operator []common.Address) (*ContractRegistryCoordinatorOperatorRegisteredIterator, error)
+	WatchOperatorRegistered(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorOperatorRegistered, operator []common.Address) (event.Subscription, error)
+	ParseOperatorRegistered(log types.Log) (*ContractRegistryCoordinatorOperatorRegistered, error)
+
+	FilterOperatorSetParamsUpdated(opts *bind.FilterOpts, quorumNumber []uint8) (*ContractRegistryCoordinatorOperatorSetParamsUpdatedIterator, error)
+	WatchOperatorSetParamsUpdated(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorOperatorSetParamsUpdated, quorumNumber []uint8) (event.Subscription, error)
+	ParseOperatorSetParamsUpdated(log types.Log) (*ContractRegistryCoordinatorOperatorSetParamsUpdated, error)
+
+	FilterOperatorSocketUpdate(opts *bind.FilterOpts, operator []common.Address) (*ContractRegistryCoordinatorOperatorSocketUpdateIterator, error)
+	WatchOperatorSocketUpdate(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorOperatorSocketUpdate, operator []common.Address) (event.Subscription, error)
+	ParseOperatorSocketUpdate(log types.Log) (*ContractRegistryCoordinatorOperatorSocketUpdate, error)
+
+	FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*ContractRegistryCoordinatorOwnershipTransferredIterator, error)
+	WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error)
+	ParseOwnershipTransferred(log types.Log) (*ContractRegistryCoordinatorOwnershipTransferred, error)
+
+	FilterPaused(opts *bind.FilterOpts, account []common.Address) (*ContractRegistryCoordinatorPausedIterator, error)
+	WatchPaused(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorPaused, account []common.Address) (event.Subscription, error)
+	ParsePaused(log types.Log) (*ContractRegistryCoordinatorPaused, error)
+
+	FilterPauserRegistrySet(opts *bind.FilterOpts) (*ContractRegistryCoordinatorPauserRegistrySetIterator, error)
+	WatchPauserRegistrySet(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorPauserRegistrySet) (event.Subscription, error)
+	ParsePauserRegistrySet(log types.Log) (*ContractRegistryCoordinatorPauserRegistrySet, error)
+
+	FilterQuorumBlockNumberUpdated(opts *bind.FilterOpts, quorumNumber []uint8) (*ContractRegistryCoordinatorQuorumBlockNumberUpdatedIterator, error)
+	WatchQuorumBlockNumberUpdated(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorQuorumBlockNumberUpdated, quorumNumber []uint8) (event.Subscription, error)
+	ParseQuorumBlockNumberUpdated(log types.Log) (*ContractRegistryCoordinatorQuorumBlockNumberUpdated, error)
+
+	FilterUnpaused(opts *bind.FilterOpts, account []common.Address) (*ContractRegistryCoordinatorUnpausedIterator, error)
+	WatchUnpaused(opts *bind.WatchOpts, sink chan<- *ContractRegistryCoordinatorUnpaused, account []common.Address) (event.Subscription, error)
+	ParseUnpaused(log types.Log) (*ContractRegistryCoordinatorUnpaused, error)
+}
+
 // ContractRegistryCoordinator is an auto generated Go binding around an Ethereum contract.
 type ContractRegistryCoordinator struct {
 	ContractRegistryCoordinatorCaller     // Read-only binding to the contract
@@ -106,20 +256,32 @@ type ContractRegistryCoordinator struct {
 	ContractRegistryCoordinatorFilterer   // Log filterer for contract events
 }
 
+// ContractRegistryCoordinator implements the ContractRegistryCoordinatorMethods interface.
+var _ ContractRegistryCoordinatorMethods = (*ContractRegistryCoordinator)(nil)
+
 // ContractRegistryCoordinatorCaller is an auto generated read-only Go binding around an Ethereum contract.
 type ContractRegistryCoordinatorCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
+
+// ContractRegistryCoordinatorCaller implements the ContractRegistryCoordinatorCalls interface.
+var _ ContractRegistryCoordinatorCalls = (*ContractRegistryCoordinatorCaller)(nil)
 
 // ContractRegistryCoordinatorTransactor is an auto generated write-only Go binding around an Ethereum contract.
 type ContractRegistryCoordinatorTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
+// ContractRegistryCoordinatorTransactor implements the ContractRegistryCoordinatorTransacts interface.
+var _ ContractRegistryCoordinatorTransacts = (*ContractRegistryCoordinatorTransactor)(nil)
+
 // ContractRegistryCoordinatorFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
 type ContractRegistryCoordinatorFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
+
+// ContractRegistryCoordinatorFilterer implements the ContractRegistryCoordinatorFilters interface.
+var _ ContractRegistryCoordinatorFilters = (*ContractRegistryCoordinatorFilterer)(nil)
 
 // ContractRegistryCoordinatorSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.

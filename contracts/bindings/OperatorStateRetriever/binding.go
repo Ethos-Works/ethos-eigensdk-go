@@ -66,6 +66,30 @@ func DeployContractOperatorStateRetriever(auth *bind.TransactOpts, backend bind.
 	return address, tx, &ContractOperatorStateRetriever{ContractOperatorStateRetrieverCaller: ContractOperatorStateRetrieverCaller{contract: contract}, ContractOperatorStateRetrieverTransactor: ContractOperatorStateRetrieverTransactor{contract: contract}, ContractOperatorStateRetrieverFilterer: ContractOperatorStateRetrieverFilterer{contract: contract}}, nil
 }
 
+// ContractOperatorStateRetrieverMethods is an auto generated interface around an Ethereum contract.
+type ContractOperatorStateRetrieverMethods interface {
+	ContractOperatorStateRetrieverCalls
+	ContractOperatorStateRetrieverTransacts
+	ContractOperatorStateRetrieverFilters
+}
+
+// ContractOperatorStateRetrieverCalls is an auto generated interface that defines the call methods available for an Ethereum contract.
+type ContractOperatorStateRetrieverCalls interface {
+	GetOperatorState(opts *bind.CallOpts, registryCoordinator common.Address, operator common.Address, blockNumber uint32) (*big.Int, [][]OperatorStateRetrieverOperator, error)
+
+	GetOperatorState0(opts *bind.CallOpts, registryCoordinator common.Address, quorumNumbers []byte, blockNumber uint32) ([][]OperatorStateRetrieverOperator, error)
+
+	GetQuorumBitmapsAtBlockNumber(opts *bind.CallOpts, registryCoordinator common.Address, operators []common.Address, blockNumber uint32) ([]*big.Int, error)
+}
+
+// ContractOperatorStateRetrieverTransacts is an auto generated interface that defines the transact methods available for an Ethereum contract.
+type ContractOperatorStateRetrieverTransacts interface {
+}
+
+// ContractOperatorStateRetrieverFilterer is an auto generated interface that defines the log filtering methods available for an Ethereum contract.
+type ContractOperatorStateRetrieverFilters interface {
+}
+
 // ContractOperatorStateRetriever is an auto generated Go binding around an Ethereum contract.
 type ContractOperatorStateRetriever struct {
 	ContractOperatorStateRetrieverCaller     // Read-only binding to the contract
@@ -73,20 +97,32 @@ type ContractOperatorStateRetriever struct {
 	ContractOperatorStateRetrieverFilterer   // Log filterer for contract events
 }
 
+// ContractOperatorStateRetriever implements the ContractOperatorStateRetrieverMethods interface.
+var _ ContractOperatorStateRetrieverMethods = (*ContractOperatorStateRetriever)(nil)
+
 // ContractOperatorStateRetrieverCaller is an auto generated read-only Go binding around an Ethereum contract.
 type ContractOperatorStateRetrieverCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
+
+// ContractOperatorStateRetrieverCaller implements the ContractOperatorStateRetrieverCalls interface.
+var _ ContractOperatorStateRetrieverCalls = (*ContractOperatorStateRetrieverCaller)(nil)
 
 // ContractOperatorStateRetrieverTransactor is an auto generated write-only Go binding around an Ethereum contract.
 type ContractOperatorStateRetrieverTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
+// ContractOperatorStateRetrieverTransactor implements the ContractOperatorStateRetrieverTransacts interface.
+var _ ContractOperatorStateRetrieverTransacts = (*ContractOperatorStateRetrieverTransactor)(nil)
+
 // ContractOperatorStateRetrieverFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
 type ContractOperatorStateRetrieverFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
+
+// ContractOperatorStateRetrieverFilterer implements the ContractOperatorStateRetrieverFilters interface.
+var _ ContractOperatorStateRetrieverFilters = (*ContractOperatorStateRetrieverFilterer)(nil)
 
 // ContractOperatorStateRetrieverSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
