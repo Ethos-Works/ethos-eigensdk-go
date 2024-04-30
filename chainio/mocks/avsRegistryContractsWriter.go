@@ -14,7 +14,6 @@ import (
 	big "math/big"
 	reflect "reflect"
 
-	contractRegistryCoordinator "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
 	bls "github.com/Layr-Labs/eigensdk-go/crypto/bls"
 	common "github.com/ethereum/go-ethereum/common"
 	types "github.com/ethereum/go-ethereum/core/types"
@@ -45,18 +44,18 @@ func (m *MockAvsRegistryWriter) EXPECT() *MockAvsRegistryWriterMockRecorder {
 }
 
 // DeregisterOperator mocks base method.
-func (m *MockAvsRegistryWriter) DeregisterOperator(arg0 context.Context, arg1 []byte, arg2 contractRegistryCoordinator.BN254G1Point) (*types.Receipt, error) {
+func (m *MockAvsRegistryWriter) DeregisterOperator(arg0 context.Context, arg1 []byte) (*types.Receipt, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeregisterOperator", arg0, arg1, arg2)
+	ret := m.ctrl.Call(m, "DeregisterOperator", arg0, arg1)
 	ret0, _ := ret[0].(*types.Receipt)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // DeregisterOperator indicates an expected call of DeregisterOperator.
-func (mr *MockAvsRegistryWriterMockRecorder) DeregisterOperator(arg0, arg1, arg2 any) *gomock.Call {
+func (mr *MockAvsRegistryWriterMockRecorder) DeregisterOperator(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeregisterOperator", reflect.TypeOf((*MockAvsRegistryWriter)(nil).DeregisterOperator), arg0, arg1, arg2)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeregisterOperator", reflect.TypeOf((*MockAvsRegistryWriter)(nil).DeregisterOperator), arg0, arg1)
 }
 
 // RegisterOperatorInQuorumWithAVSRegistryCoordinator mocks base method.

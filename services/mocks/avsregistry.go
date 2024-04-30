@@ -12,9 +12,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	contractOperatorStateRetriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
 	types "github.com/Layr-Labs/eigensdk-go/types"
-	bind "github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gomock "go.uber.org/mock/gomock"
 )
 
@@ -39,21 +37,6 @@ func NewMockAvsRegistryService(ctrl *gomock.Controller) *MockAvsRegistryService 
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockAvsRegistryService) EXPECT() *MockAvsRegistryServiceMockRecorder {
 	return m.recorder
-}
-
-// GetCheckSignaturesIndices mocks base method.
-func (m *MockAvsRegistryService) GetCheckSignaturesIndices(arg0 *bind.CallOpts, arg1 uint32, arg2 []byte, arg3 [][32]byte) (contractOperatorStateRetriever.OperatorStateRetrieverCheckSignaturesIndices, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCheckSignaturesIndices", arg0, arg1, arg2, arg3)
-	ret0, _ := ret[0].(contractOperatorStateRetriever.OperatorStateRetrieverCheckSignaturesIndices)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCheckSignaturesIndices indicates an expected call of GetCheckSignaturesIndices.
-func (mr *MockAvsRegistryServiceMockRecorder) GetCheckSignaturesIndices(arg0, arg1, arg2, arg3 any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCheckSignaturesIndices", reflect.TypeOf((*MockAvsRegistryService)(nil).GetCheckSignaturesIndices), arg0, arg1, arg2, arg3)
 }
 
 // GetOperatorsAvsStateAtBlock mocks base method.

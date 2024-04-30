@@ -38,54 +38,12 @@ type ISignatureUtilsSignatureWithSaltAndExpiry struct {
 
 // ContractServiceManagerBaseMetaData contains all meta data concerning the ContractServiceManagerBase contract.
 var ContractServiceManagerBaseMetaData = &bind.MetaData{
-	ABI: "[{\"type\":\"function\",\"name\":\"avsDirectory\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"deregisterOperatorFromAVS\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getOperatorRestakedStrategies\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address[]\",\"internalType\":\"address[]\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRestakeableStrategies\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address[]\",\"internalType\":\"address[]\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"registerOperatorToAVS\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"operatorSignature\",\"type\":\"tuple\",\"internalType\":\"structISignatureUtils.SignatureWithSaltAndExpiry\",\"components\":[{\"name\":\"signature\",\"type\":\"bytes\",\"internalType\":\"bytes\"},{\"name\":\"salt\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"expiry\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setMetadataURI\",\"inputs\":[{\"name\":\"_metadataURI\",\"type\":\"string\",\"internalType\":\"string\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Initialized\",\"inputs\":[{\"name\":\"version\",\"type\":\"uint8\",\"indexed\":false,\"internalType\":\"uint8\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false}]",
+	ABI: "[{\"type\":\"function\",\"name\":\"avsDirectory\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"deregisterOperatorFromAVS\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getOperatorRestakedStrategies\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address[]\",\"internalType\":\"address[]\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRestakeableStrategies\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address[]\",\"internalType\":\"address[]\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"registerOperatorToAVS\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"internalType\":\"address\"},{\"name\":\"operatorSignature\",\"type\":\"tuple\",\"internalType\":\"structISignatureUtils.SignatureWithSaltAndExpiry\",\"components\":[{\"name\":\"signature\",\"type\":\"bytes\",\"internalType\":\"bytes\"},{\"name\":\"salt\",\"type\":\"bytes32\",\"internalType\":\"bytes32\"},{\"name\":\"expiry\",\"type\":\"uint256\",\"internalType\":\"uint256\"}]}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"updateAVSMetadataURI\",\"inputs\":[{\"name\":\"_metadataURI\",\"type\":\"string\",\"internalType\":\"string\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Initialized\",\"inputs\":[{\"name\":\"version\",\"type\":\"uint8\",\"indexed\":false,\"internalType\":\"uint8\"}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true,\"internalType\":\"address\"}],\"anonymous\":false}]",
 }
 
 // ContractServiceManagerBaseABI is the input ABI used to generate the binding from.
 // Deprecated: Use ContractServiceManagerBaseMetaData.ABI instead.
 var ContractServiceManagerBaseABI = ContractServiceManagerBaseMetaData.ABI
-
-// ContractServiceManagerBaseMethods is an auto generated interface around an Ethereum contract.
-type ContractServiceManagerBaseMethods interface {
-	ContractServiceManagerBaseCalls
-	ContractServiceManagerBaseTransacts
-	ContractServiceManagerBaseFilters
-}
-
-// ContractServiceManagerBaseCalls is an auto generated interface that defines the call methods available for an Ethereum contract.
-type ContractServiceManagerBaseCalls interface {
-	AvsDirectory(opts *bind.CallOpts) (common.Address, error)
-
-	GetOperatorRestakedStrategies(opts *bind.CallOpts, operator common.Address) ([]common.Address, error)
-
-	GetRestakeableStrategies(opts *bind.CallOpts) ([]common.Address, error)
-
-	Owner(opts *bind.CallOpts) (common.Address, error)
-}
-
-// ContractServiceManagerBaseTransacts is an auto generated interface that defines the transact methods available for an Ethereum contract.
-type ContractServiceManagerBaseTransacts interface {
-	DeregisterOperatorFromAVS(opts *bind.TransactOpts, operator common.Address) (*types.Transaction, error)
-
-	RegisterOperatorToAVS(opts *bind.TransactOpts, operator common.Address, operatorSignature ISignatureUtilsSignatureWithSaltAndExpiry) (*types.Transaction, error)
-
-	RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error)
-
-	SetMetadataURI(opts *bind.TransactOpts, _metadataURI string) (*types.Transaction, error)
-
-	TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error)
-}
-
-// ContractServiceManagerBaseFilterer is an auto generated interface that defines the log filtering methods available for an Ethereum contract.
-type ContractServiceManagerBaseFilters interface {
-	FilterInitialized(opts *bind.FilterOpts) (*ContractServiceManagerBaseInitializedIterator, error)
-	WatchInitialized(opts *bind.WatchOpts, sink chan<- *ContractServiceManagerBaseInitialized) (event.Subscription, error)
-	ParseInitialized(log types.Log) (*ContractServiceManagerBaseInitialized, error)
-
-	FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*ContractServiceManagerBaseOwnershipTransferredIterator, error)
-	WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *ContractServiceManagerBaseOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error)
-	ParseOwnershipTransferred(log types.Log) (*ContractServiceManagerBaseOwnershipTransferred, error)
-}
 
 // ContractServiceManagerBase is an auto generated Go binding around an Ethereum contract.
 type ContractServiceManagerBase struct {
@@ -94,32 +52,20 @@ type ContractServiceManagerBase struct {
 	ContractServiceManagerBaseFilterer   // Log filterer for contract events
 }
 
-// ContractServiceManagerBase implements the ContractServiceManagerBaseMethods interface.
-var _ ContractServiceManagerBaseMethods = (*ContractServiceManagerBase)(nil)
-
 // ContractServiceManagerBaseCaller is an auto generated read-only Go binding around an Ethereum contract.
 type ContractServiceManagerBaseCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
-
-// ContractServiceManagerBaseCaller implements the ContractServiceManagerBaseCalls interface.
-var _ ContractServiceManagerBaseCalls = (*ContractServiceManagerBaseCaller)(nil)
 
 // ContractServiceManagerBaseTransactor is an auto generated write-only Go binding around an Ethereum contract.
 type ContractServiceManagerBaseTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ContractServiceManagerBaseTransactor implements the ContractServiceManagerBaseTransacts interface.
-var _ ContractServiceManagerBaseTransacts = (*ContractServiceManagerBaseTransactor)(nil)
-
 // ContractServiceManagerBaseFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
 type ContractServiceManagerBaseFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
-
-// ContractServiceManagerBaseFilterer implements the ContractServiceManagerBaseFilters interface.
-var _ ContractServiceManagerBaseFilters = (*ContractServiceManagerBaseFilterer)(nil)
 
 // ContractServiceManagerBaseSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
@@ -428,27 +374,6 @@ func (_ContractServiceManagerBase *ContractServiceManagerBaseTransactorSession) 
 	return _ContractServiceManagerBase.Contract.RenounceOwnership(&_ContractServiceManagerBase.TransactOpts)
 }
 
-// SetMetadataURI is a paid mutator transaction binding the contract method 0x750521f5.
-//
-// Solidity: function setMetadataURI(string _metadataURI) returns()
-func (_ContractServiceManagerBase *ContractServiceManagerBaseTransactor) SetMetadataURI(opts *bind.TransactOpts, _metadataURI string) (*types.Transaction, error) {
-	return _ContractServiceManagerBase.contract.Transact(opts, "setMetadataURI", _metadataURI)
-}
-
-// SetMetadataURI is a paid mutator transaction binding the contract method 0x750521f5.
-//
-// Solidity: function setMetadataURI(string _metadataURI) returns()
-func (_ContractServiceManagerBase *ContractServiceManagerBaseSession) SetMetadataURI(_metadataURI string) (*types.Transaction, error) {
-	return _ContractServiceManagerBase.Contract.SetMetadataURI(&_ContractServiceManagerBase.TransactOpts, _metadataURI)
-}
-
-// SetMetadataURI is a paid mutator transaction binding the contract method 0x750521f5.
-//
-// Solidity: function setMetadataURI(string _metadataURI) returns()
-func (_ContractServiceManagerBase *ContractServiceManagerBaseTransactorSession) SetMetadataURI(_metadataURI string) (*types.Transaction, error) {
-	return _ContractServiceManagerBase.Contract.SetMetadataURI(&_ContractServiceManagerBase.TransactOpts, _metadataURI)
-}
-
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
@@ -468,6 +393,27 @@ func (_ContractServiceManagerBase *ContractServiceManagerBaseSession) TransferOw
 // Solidity: function transferOwnership(address newOwner) returns()
 func (_ContractServiceManagerBase *ContractServiceManagerBaseTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
 	return _ContractServiceManagerBase.Contract.TransferOwnership(&_ContractServiceManagerBase.TransactOpts, newOwner)
+}
+
+// UpdateAVSMetadataURI is a paid mutator transaction binding the contract method 0xa98fb355.
+//
+// Solidity: function updateAVSMetadataURI(string _metadataURI) returns()
+func (_ContractServiceManagerBase *ContractServiceManagerBaseTransactor) UpdateAVSMetadataURI(opts *bind.TransactOpts, _metadataURI string) (*types.Transaction, error) {
+	return _ContractServiceManagerBase.contract.Transact(opts, "updateAVSMetadataURI", _metadataURI)
+}
+
+// UpdateAVSMetadataURI is a paid mutator transaction binding the contract method 0xa98fb355.
+//
+// Solidity: function updateAVSMetadataURI(string _metadataURI) returns()
+func (_ContractServiceManagerBase *ContractServiceManagerBaseSession) UpdateAVSMetadataURI(_metadataURI string) (*types.Transaction, error) {
+	return _ContractServiceManagerBase.Contract.UpdateAVSMetadataURI(&_ContractServiceManagerBase.TransactOpts, _metadataURI)
+}
+
+// UpdateAVSMetadataURI is a paid mutator transaction binding the contract method 0xa98fb355.
+//
+// Solidity: function updateAVSMetadataURI(string _metadataURI) returns()
+func (_ContractServiceManagerBase *ContractServiceManagerBaseTransactorSession) UpdateAVSMetadataURI(_metadataURI string) (*types.Transaction, error) {
+	return _ContractServiceManagerBase.Contract.UpdateAVSMetadataURI(&_ContractServiceManagerBase.TransactOpts, _metadataURI)
 }
 
 // ContractServiceManagerBaseInitializedIterator is returned from FilterInitialized and is used to iterate over the raw logs and unpacked data for Initialized events raised by the ContractServiceManagerBase contract.

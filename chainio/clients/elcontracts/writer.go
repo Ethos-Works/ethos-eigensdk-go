@@ -13,7 +13,6 @@ import (
 	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
 	chainioutils "github.com/Layr-Labs/eigensdk-go/chainio/utils"
 	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/metrics"
 	"github.com/Layr-Labs/eigensdk-go/types"
 
 	delegationmanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
@@ -55,7 +54,6 @@ func NewELChainWriter(
 	elChainReader ELReader,
 	ethClient eth.EthClient,
 	logger logging.Logger,
-	eigenMetrics metrics.Metrics,
 	txMgr txmgr.TxManager,
 ) *ELChainWriter {
 	return &ELChainWriter{
@@ -75,7 +73,6 @@ func BuildELChainWriter(
 	avsDirectoryAddr gethcommon.Address,
 	ethClient eth.EthClient,
 	logger logging.Logger,
-	eigenMetrics metrics.Metrics,
 	txMgr txmgr.TxManager,
 ) (*ELChainWriter, error) {
 	elContractBindings, err := chainioutils.NewEigenlayerContractBindings(
@@ -103,7 +100,6 @@ func BuildELChainWriter(
 		elChainReader,
 		ethClient,
 		logger,
-		eigenMetrics,
 		txMgr,
 	), nil
 }

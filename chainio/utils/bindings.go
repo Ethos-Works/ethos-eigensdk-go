@@ -136,18 +136,6 @@ func NewAVSRegistryContractBindings(
 		return nil, types.WrapError(errors.New("Failed to fetch StakeRegistry contract"), err)
 	}
 
-	blsApkRegistryAddr, err := contractBlsRegistryCoordinator.BlsApkRegistry(&bind.CallOpts{})
-	if err != nil {
-		return nil, types.WrapError(errors.New("Failed to fetch BLSPubkeyRegistry address"), err)
-	}
-	contractBlsApkRegistry, err := blsapkregistry.NewContractBLSApkRegistry(
-		blsApkRegistryAddr,
-		ethclient,
-	)
-	if err != nil {
-		return nil, types.WrapError(errors.New("Failed to fetch BLSPubkeyRegistry contract"), err)
-	}
-
 	contractOperatorStateRetriever, err := opstateretriever.NewContractOperatorStateRetriever(
 		operatorStateRetrieverAddr,
 		ethclient,
@@ -160,12 +148,10 @@ func NewAVSRegistryContractBindings(
 		ServiceManagerAddr:         serviceManagerAddr,
 		RegistryCoordinatorAddr:    registryCoordinatorAddr,
 		StakeRegistryAddr:          stakeregistryAddr,
-		BlsApkRegistryAddr:         blsApkRegistryAddr,
 		OperatorStateRetrieverAddr: operatorStateRetrieverAddr,
 		ServiceManager:             contractServiceManager,
 		RegistryCoordinator:        contractBlsRegistryCoordinator,
 		StakeRegistry:              contractStakeRegistry,
-		BlsApkRegistry:             contractBlsApkRegistry,
 		OperatorStateRetriever:     contractOperatorStateRetriever,
 	}, nil
 }

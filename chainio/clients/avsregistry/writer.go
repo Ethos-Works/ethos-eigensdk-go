@@ -9,8 +9,6 @@ import (
 	"github.com/Layr-Labs/eigensdk-go/chainio/clients/elcontracts"
 	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
 	"github.com/Layr-Labs/eigensdk-go/chainio/txmgr"
-	"github.com/Layr-Labs/eigensdk-go/chainio/utils"
-	"github.com/Layr-Labs/eigensdk-go/crypto/bls"
 	"github.com/Layr-Labs/eigensdk-go/logging"
 	"github.com/Layr-Labs/eigensdk-go/types"
 	sdkutils "github.com/Layr-Labs/eigensdk-go/utils"
@@ -19,7 +17,6 @@ import (
 	gethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
 	opstateretriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
 	regcoord "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
 	smbase "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ServiceManagerBase"
@@ -39,7 +36,6 @@ type AvsRegistryWriter interface {
 		operatorEcdsaPrivateKey *ecdsa.PrivateKey,
 		operatorToAvsRegistrationSigSalt [32]byte,
 		operatorToAvsRegistrationSigExpiry *big.Int,
-		blsKeyPair *bls.KeyPair,
 		quorumNumbers []byte,
 		socket string,
 	) (*gethtypes.Receipt, error)
@@ -67,7 +63,6 @@ type AvsRegistryWriter interface {
 	DeregisterOperator(
 		ctx context.Context,
 		quorumNumbers []byte,
-		pubkey regcoord.BN254G1Point,
 	) (*gethtypes.Receipt, error)
 }
 
@@ -76,7 +71,6 @@ type AvsRegistryChainWriter struct {
 	registryCoordinator    *regcoord.ContractRegistryCoordinator
 	operatorStateRetriever *opstateretriever.ContractOperatorStateRetriever
 	stakeRegistry          *stakeregistry.ContractStakeRegistry
-	blsApkRegistry         *blsapkregistry.ContractBLSApkRegistry
 	elReader               elcontracts.ELReader
 	logger                 logging.Logger
 	ethClient              eth.EthClient
@@ -90,7 +84,6 @@ func NewAvsRegistryChainWriter(
 	registryCoordinator *regcoord.ContractRegistryCoordinator,
 	operatorStateRetriever *opstateretriever.ContractOperatorStateRetriever,
 	stakeRegistry *stakeregistry.ContractStakeRegistry,
-	blsApkRegistry *blsapkregistry.ContractBLSApkRegistry,
 	elReader elcontracts.ELReader,
 	logger logging.Logger,
 	ethClient eth.EthClient,
@@ -101,7 +94,6 @@ func NewAvsRegistryChainWriter(
 		registryCoordinator:    registryCoordinator,
 		operatorStateRetriever: operatorStateRetriever,
 		stakeRegistry:          stakeRegistry,
-		blsApkRegistry:         blsApkRegistry,
 		elReader:               elReader,
 		logger:                 logger,
 		ethClient:              ethClient,
@@ -135,14 +127,6 @@ func BuildAvsRegistryChainWriter(
 	if err != nil {
 		return nil, types.WrapError(errors.New("Failed to create ServiceManager contract"), err)
 	}
-	blsApkRegistryAddr, err := registryCoordinator.BlsApkRegistry(&bind.CallOpts{})
-	if err != nil {
-		return nil, types.WrapError(errors.New("Failed to get BLSApkRegistry address"), err)
-	}
-	blsApkRegistry, err := blsapkregistry.NewContractBLSApkRegistry(blsApkRegistryAddr, ethClient)
-	if err != nil {
-		return nil, types.WrapError(errors.New("Failed to create BLSApkRegistry contract"), err)
-	}
 	stakeRegistryAddr, err := registryCoordinator.StakeRegistry(&bind.CallOpts{})
 	if err != nil {
 		return nil, types.WrapError(errors.New("Failed to get StakeRegistry address"), err)
@@ -168,7 +152,6 @@ func BuildAvsRegistryChainWriter(
 		registryCoordinator,
 		operatorStateRetriever,
 		stakeRegistry,
-		blsApkRegistry,
 		elReader,
 		logger,
 		ethClient,
@@ -189,28 +172,11 @@ func (w *AvsRegistryChainWriter) RegisterOperatorInQuorumWithAVSRegistryCoordina
 	operatorEcdsaPrivateKey *ecdsa.PrivateKey,
 	operatorToAvsRegistrationSigSalt [32]byte,
 	operatorToAvsRegistrationSigExpiry *big.Int,
-	blsKeyPair *bls.KeyPair,
 	quorumNumbers []byte,
 	socket string,
 ) (*gethtypes.Receipt, error) {
 	w.logger.Info("registering operator with the AVS's registry coordinator")
-	// params to register bls pubkey with bls apk registry
 	operatorAddr := crypto.PubkeyToAddress(operatorEcdsaPrivateKey.PublicKey)
-	g1HashedMsgToSign, err := w.registryCoordinator.PubkeyRegistrationMessageHash(&bind.CallOpts{}, operatorAddr)
-	if err != nil {
-		return nil, err
-	}
-	signedMsg := utils.ConvertToBN254G1Point(
-		blsKeyPair.SignHashedToCurveMessage(utils.ConvertBn254GethToGnark(g1HashedMsgToSign)).G1Point,
-	)
-	G1pubkeyBN254 := utils.ConvertToBN254G1Point(blsKeyPair.GetPubKeyG1())
-	G2pubkeyBN254 := utils.ConvertToBN254G2Point(blsKeyPair.GetPubKeyG2())
-	pubkeyRegParams := regcoord.IBLSApkRegistryPubkeyRegistrationParams{
-		PubkeyRegistrationSignature: signedMsg,
-		PubkeyG1:                    G1pubkeyBN254,
-		PubkeyG2:                    G2pubkeyBN254,
-	}
-
 	// params to register operator in delegation manager's operator-avs mapping
 	msgToSign, err := w.elReader.CalculateOperatorAVSRegistrationDigestHash(
 		&bind.CallOpts{},
@@ -246,7 +212,6 @@ func (w *AvsRegistryChainWriter) RegisterOperatorInQuorumWithAVSRegistryCoordina
 		noSendTxOpts,
 		quorumNumbers,
 		socket,
-		pubkeyRegParams,
 		operatorSignatureWithSaltAndExpiry,
 	)
 	if err != nil {
@@ -308,7 +273,6 @@ func (w *AvsRegistryChainWriter) UpdateStakesOfOperatorSubsetForAllQuorums(
 func (w *AvsRegistryChainWriter) DeregisterOperator(
 	ctx context.Context,
 	quorumNumbers []byte,
-	pubkey regcoord.BN254G1Point,
 ) (*gethtypes.Receipt, error) {
 	w.logger.Info("deregistering operator with the AVS's registry coordinator")
 	noSendTxOpts, err := w.txMgr.GetNoSendTxOpts()

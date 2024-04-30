@@ -95,8 +95,7 @@ type BlockNum = uint32
 
 // AvsOperator represents the operator state in AVS registries
 type OperatorAvsState struct {
-	OperatorId OperatorId
-	Pubkeys    OperatorPubkeys
+	Operator OperatorAddr
 	// Stake of the operator for each quorum
 	StakePerQuorum map[QuorumNum]StakeAmount
 	BlockNumber    BlockNum
@@ -120,6 +119,5 @@ func BitmapToQuorumIds(bitmap *big.Int) []QuorumNum {
 type QuorumAvsState struct {
 	QuorumNumber QuorumNum
 	TotalStake   StakeAmount
-	AggPubkeyG1  *bls.G1Point
 	BlockNumber  BlockNum
 }
