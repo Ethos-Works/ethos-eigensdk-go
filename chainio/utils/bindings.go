@@ -5,14 +5,13 @@ package utils
 import (
 	"errors"
 
-	"github.com/ethos-works/ethos-eigensdk-go/logging"
-	"github.com/ethos-works/ethos-eigensdk-go/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 
 	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
 	avsdirectory "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/AVSDirectory"
-	blsapkregistry "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/BLSApkRegistry"
 	delegationmanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
 	slasher "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ISlasher"
 	opstateretriever "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/OperatorStateRetriever"
@@ -88,13 +87,11 @@ type AvsRegistryContractBindings struct {
 	ServiceManagerAddr         gethcommon.Address
 	RegistryCoordinatorAddr    gethcommon.Address
 	StakeRegistryAddr          gethcommon.Address
-	BlsApkRegistryAddr         gethcommon.Address
 	OperatorStateRetrieverAddr gethcommon.Address
 	// contract bindings
 	ServiceManager         *servicemanager.ContractServiceManagerBase
 	RegistryCoordinator    *regcoordinator.ContractRegistryCoordinator
 	StakeRegistry          *stakeregistry.ContractStakeRegistry
-	BlsApkRegistry         *blsapkregistry.ContractBLSApkRegistry
 	OperatorStateRetriever *opstateretriever.ContractOperatorStateRetriever
 }
 
