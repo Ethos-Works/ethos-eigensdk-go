@@ -3,16 +3,16 @@ package clients
 import (
 	"errors"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/avsregistry"
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/elcontracts"
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	"github.com/Layr-Labs/eigensdk-go/chainio/txmgr"
-	chainioutils "github.com/Layr-Labs/eigensdk-go/chainio/utils"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/signerv2"
-	"github.com/Layr-Labs/eigensdk-go/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/avsregistry"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/elcontracts"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/txmgr"
+	chainioutils "github.com/ethos-works/ethos-eigensdk-go/chainio/utils"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/signerv2"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 )
 
 type BuildAllConfig struct {

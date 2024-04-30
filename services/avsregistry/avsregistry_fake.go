@@ -5,7 +5,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/Layr-Labs/eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 )
 
 type FakeAvsRegistryService struct {

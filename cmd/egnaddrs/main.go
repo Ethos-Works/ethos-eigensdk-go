@@ -13,9 +13,9 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/urfave/cli/v2"
 
-	dm "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
-	iblssigchecker "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IBLSSignatureChecker"
-	regcoord "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
+	dm "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
+	iblssigchecker "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/IBLSSignatureChecker"
+	regcoord "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/RegistryCoordinator"
 )
 
 var (

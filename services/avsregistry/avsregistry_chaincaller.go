@@ -5,9 +5,9 @@ import (
 	"errors"
 	"math/big"
 
-	avsregistry "github.com/Layr-Labs/eigensdk-go/chainio/clients/avsregistry"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
+	avsregistry "github.com/ethos-works/ethos-eigensdk-go/chainio/clients/avsregistry"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 

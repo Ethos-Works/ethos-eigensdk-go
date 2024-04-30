@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/Layr-Labs/eigensdk-go/crypto/bls"
+	"github.com/ethos-works/ethos-eigensdk-go/crypto/bls"
 )
 
 type ChainDataMock struct {

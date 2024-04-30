@@ -6,21 +6,21 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/elcontracts"
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	"github.com/Layr-Labs/eigensdk-go/chainio/txmgr"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
-	sdkutils "github.com/Layr-Labs/eigensdk-go/utils"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/elcontracts"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/txmgr"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
+	sdkutils "github.com/ethos-works/ethos-eigensdk-go/utils"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
 	gethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	opstateretriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
-	regcoord "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
-	smbase "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ServiceManagerBase"
-	stakeregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StakeRegistry"
+	opstateretriever "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/OperatorStateRetriever"
+	regcoord "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/RegistryCoordinator"
+	smbase "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ServiceManagerBase"
+	stakeregistry "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StakeRegistry"
 )
 
 type AvsRegistryWriter interface {

@@ -8,17 +8,17 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	gethcommon "github.com/ethereum/go-ethereum/common"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	chainioutils "github.com/Layr-Labs/eigensdk-go/chainio/utils"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	chainioutils "github.com/ethos-works/ethos-eigensdk-go/chainio/utils"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 
-	avsdirectory "github.com/Layr-Labs/eigensdk-go/contracts/bindings/AVSDirectory"
-	delegationmanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
-	erc20 "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IERC20"
-	slasher "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ISlasher"
-	strategy "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IStrategy"
-	strategymanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StrategyManager"
+	avsdirectory "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/AVSDirectory"
+	delegationmanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
+	erc20 "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/IERC20"
+	slasher "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ISlasher"
+	strategy "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/IStrategy"
+	strategymanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StrategyManager"
 )
 
 type ELReader interface {

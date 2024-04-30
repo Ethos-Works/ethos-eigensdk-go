@@ -12,7 +12,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/Layr-Labs/eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
 )
 
 const (

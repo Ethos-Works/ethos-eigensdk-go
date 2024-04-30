@@ -5,21 +5,21 @@ package utils
 import (
 	"errors"
 
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	avsdirectory "github.com/Layr-Labs/eigensdk-go/contracts/bindings/AVSDirectory"
-	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
-	delegationmanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
-	slasher "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ISlasher"
-	opstateretriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
-	regcoordinator "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
-	servicemanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ServiceManagerBase"
-	stakeregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StakeRegistry"
-	strategymanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StrategyManager"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	avsdirectory "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/AVSDirectory"
+	blsapkregistry "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/BLSApkRegistry"
+	delegationmanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
+	slasher "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ISlasher"
+	opstateretriever "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/OperatorStateRetriever"
+	regcoordinator "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/RegistryCoordinator"
+	servicemanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ServiceManagerBase"
+	stakeregistry "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StakeRegistry"
+	strategymanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StrategyManager"
 )
 
 // Unclear to me why geth bindings don't store and expose the contract address...

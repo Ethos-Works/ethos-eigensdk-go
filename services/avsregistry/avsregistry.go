@@ -3,7 +3,7 @@ package avsregistry
 import (
 	"context"
 
-	"github.com/Layr-Labs/eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 )
 
 // AvsRegistryServicemService is a service that indexes the Avs Registry contracts and provides a way to query for operator state

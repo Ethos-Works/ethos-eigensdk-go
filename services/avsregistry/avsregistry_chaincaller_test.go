@@ -6,10 +6,10 @@ import (
 	"reflect"
 	"testing"
 
-	chainiomocks "github.com/Layr-Labs/eigensdk-go/chainio/mocks"
-	opstateretrievar "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
+	chainiomocks "github.com/ethos-works/ethos-eigensdk-go/chainio/mocks"
+	opstateretrievar "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/OperatorStateRetriever"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 	"github.com/ethereum/go-ethereum/common"
 	"go.uber.org/mock/gomock"
 )
