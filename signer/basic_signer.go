@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"math/big"
 
-	sdkethclient "github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
-	"github.com/Layr-Labs/eigensdk-go/utils"
+	sdkethclient "github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/utils"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"

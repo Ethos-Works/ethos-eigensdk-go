@@ -5,21 +5,20 @@ package utils
 import (
 	"errors"
 
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	avsdirectory "github.com/Layr-Labs/eigensdk-go/contracts/bindings/AVSDirectory"
-	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
-	delegationmanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
-	slasher "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ISlasher"
-	opstateretriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
-	regcoordinator "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
-	servicemanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ServiceManagerBase"
-	stakeregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StakeRegistry"
-	strategymanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StrategyManager"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	avsdirectory "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/AVSDirectory"
+	delegationmanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
+	slasher "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ISlasher"
+	opstateretriever "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/OperatorStateRetriever"
+	regcoordinator "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/RegistryCoordinator"
+	servicemanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ServiceManagerBase"
+	stakeregistry "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StakeRegistry"
+	strategymanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StrategyManager"
 )
 
 // Unclear to me why geth bindings don't store and expose the contract address...
@@ -88,13 +87,11 @@ type AvsRegistryContractBindings struct {
 	ServiceManagerAddr         gethcommon.Address
 	RegistryCoordinatorAddr    gethcommon.Address
 	StakeRegistryAddr          gethcommon.Address
-	BlsApkRegistryAddr         gethcommon.Address
 	OperatorStateRetrieverAddr gethcommon.Address
 	// contract bindings
 	ServiceManager         *servicemanager.ContractServiceManagerBase
 	RegistryCoordinator    *regcoordinator.ContractRegistryCoordinator
 	StakeRegistry          *stakeregistry.ContractStakeRegistry
-	BlsApkRegistry         *blsapkregistry.ContractBLSApkRegistry
 	OperatorStateRetriever *opstateretriever.ContractOperatorStateRetriever
 }
 
@@ -136,18 +133,6 @@ func NewAVSRegistryContractBindings(
 		return nil, types.WrapError(errors.New("Failed to fetch StakeRegistry contract"), err)
 	}
 
-	blsApkRegistryAddr, err := contractBlsRegistryCoordinator.BlsApkRegistry(&bind.CallOpts{})
-	if err != nil {
-		return nil, types.WrapError(errors.New("Failed to fetch BLSPubkeyRegistry address"), err)
-	}
-	contractBlsApkRegistry, err := blsapkregistry.NewContractBLSApkRegistry(
-		blsApkRegistryAddr,
-		ethclient,
-	)
-	if err != nil {
-		return nil, types.WrapError(errors.New("Failed to fetch BLSPubkeyRegistry contract"), err)
-	}
-
 	contractOperatorStateRetriever, err := opstateretriever.NewContractOperatorStateRetriever(
 		operatorStateRetrieverAddr,
 		ethclient,
@@ -160,12 +145,10 @@ func NewAVSRegistryContractBindings(
 		ServiceManagerAddr:         serviceManagerAddr,
 		RegistryCoordinatorAddr:    registryCoordinatorAddr,
 		StakeRegistryAddr:          stakeregistryAddr,
-		BlsApkRegistryAddr:         blsApkRegistryAddr,
 		OperatorStateRetrieverAddr: operatorStateRetrieverAddr,
 		ServiceManager:             contractServiceManager,
 		RegistryCoordinator:        contractBlsRegistryCoordinator,
 		StakeRegistry:              contractStakeRegistry,
-		BlsApkRegistry:             contractBlsApkRegistry,
 		OperatorStateRetriever:     contractOperatorStateRetriever,
 	}, nil
 }

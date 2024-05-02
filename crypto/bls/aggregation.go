@@ -4,8 +4,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/utils"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/utils"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 

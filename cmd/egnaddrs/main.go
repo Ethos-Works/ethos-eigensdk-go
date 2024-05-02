@@ -13,9 +13,9 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/urfave/cli/v2"
 
-	dm "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
-	iblssigchecker "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IBLSSignatureChecker"
-	regcoord "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
+	dm "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
+	iblssigchecker "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/IBLSSignatureChecker"
+	regcoord "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/RegistryCoordinator"
 )
 
 var (
@@ -167,10 +167,6 @@ func getAvsContractAddrs(client *ethclient.Client, registryCoordinatorAddr commo
 	}
 
 	// 3 registries
-	blsPubkeyApkAddr, err := blsRegistryCoordinatorWithIndicesC.BlsApkRegistry(&bind.CallOpts{})
-	if err != nil {
-		return nil, err
-	}
 	indexRegistryAddr, err := blsRegistryCoordinatorWithIndicesC.IndexRegistry(&bind.CallOpts{})
 	if err != nil {
 		return nil, err
@@ -183,7 +179,6 @@ func getAvsContractAddrs(client *ethclient.Client, registryCoordinatorAddr commo
 	addrsDict := map[string]string{
 		"service-manager":      serviceManagerAddr.Hex(),
 		"registry-coordinator": registryCoordinatorAddr.Hex(),
-		"bls-apk-registry":     blsPubkeyApkAddr.Hex(),
 		"index-registry":       indexRegistryAddr.Hex(),
 		"stake-registry":       stakeRegistryAddr.Hex(),
 	}

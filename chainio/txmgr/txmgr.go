@@ -7,9 +7,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/signerv2"
-	sdktypes "github.com/Layr-Labs/eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/signerv2"
+	sdktypes "github.com/ethos-works/ethos-eigensdk-go/types"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"

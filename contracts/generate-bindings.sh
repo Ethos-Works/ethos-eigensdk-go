@@ -31,15 +31,15 @@ function create_binding {
     rm -rf data/tmp.abi data/tmp.bin
 }
 
-EIGENLAYER_MIDDLEWARE_PATH=$script_path/lib/eigenlayer-middleware
+EIGENLAYER_MIDDLEWARE_PATH=$script_path/../../ethos/ethos-avs/contracts
 cd $EIGENLAYER_MIDDLEWARE_PATH
 # you might want to run forge clean if the contracts have changed
 forge build
 
 # No idea why but ordering of the contracts matters here... when I move them around sometimes bindings fail
-avs_contracts="RegistryCoordinator OperatorStateRetriever StakeRegistry BLSApkRegistry IBLSSignatureChecker ServiceManagerBase"
+avs_contracts="RegistryCoordinator OperatorStateRetriever StakeRegistry ServiceManagerBase"
 for contract in $avs_contracts; do
-    create_binding . $contract ../../bindings
+    create_binding . $contract ../../../ethos-eigensdk-go/contracts/bindings
 done
 
 EIGENLAYER_CONTRACT_PATH=$EIGENLAYER_MIDDLEWARE_PATH/lib/eigenlayer-contracts
@@ -49,5 +49,5 @@ forge build
 # No idea why but the ordering of the contracts matters, and for some orderings abigen fails...
 el_contracts="DelegationManager ISlasher StrategyManager EigenPod EigenPodManager IStrategy IERC20 AVSDirectory"
 for contract in $el_contracts; do
-    create_binding . $contract ../../../../bindings
+    create_binding . $contract ../../../../../ethos-eigensdk-go/contracts/bindings
 done

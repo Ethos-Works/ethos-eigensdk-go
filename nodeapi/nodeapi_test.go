@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Layr-Labs/eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
 )
 
 var noopLogger = logging.NewNoopLogger()

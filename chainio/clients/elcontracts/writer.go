@@ -5,20 +5,19 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/txmgr"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/txmgr"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	gethcommon "github.com/ethereum/go-ethereum/common"
 	gethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
-	chainioutils "github.com/Layr-Labs/eigensdk-go/chainio/utils"
-	"github.com/Layr-Labs/eigensdk-go/logging"
-	"github.com/Layr-Labs/eigensdk-go/metrics"
-	"github.com/Layr-Labs/eigensdk-go/types"
+	"github.com/ethos-works/ethos-eigensdk-go/chainio/clients/eth"
+	chainioutils "github.com/ethos-works/ethos-eigensdk-go/chainio/utils"
+	"github.com/ethos-works/ethos-eigensdk-go/logging"
+	"github.com/ethos-works/ethos-eigensdk-go/types"
 
-	delegationmanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
-	slasher "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ISlasher"
-	strategymanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/StrategyManager"
+	delegationmanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/DelegationManager"
+	slasher "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/ISlasher"
+	strategymanager "github.com/ethos-works/ethos-eigensdk-go/contracts/bindings/StrategyManager"
 )
 
 type ELWriter interface {
@@ -55,7 +54,6 @@ func NewELChainWriter(
 	elChainReader ELReader,
 	ethClient eth.EthClient,
 	logger logging.Logger,
-	eigenMetrics metrics.Metrics,
 	txMgr txmgr.TxManager,
 ) *ELChainWriter {
 	return &ELChainWriter{
@@ -75,7 +73,6 @@ func BuildELChainWriter(
 	avsDirectoryAddr gethcommon.Address,
 	ethClient eth.EthClient,
 	logger logging.Logger,
-	eigenMetrics metrics.Metrics,
 	txMgr txmgr.TxManager,
 ) (*ELChainWriter, error) {
 	elContractBindings, err := chainioutils.NewEigenlayerContractBindings(
@@ -103,14 +100,13 @@ func BuildELChainWriter(
 		elChainReader,
 		ethClient,
 		logger,
-		eigenMetrics,
 		txMgr,
 	), nil
 }
 
 // TODO(madhur): we wait for txreceipts in these functions right now, but
 // this will be changed once we have a better tx manager design implemented
-// see https://github.com/Layr-Labs/eigensdk-go/pull/75
+// see https://github.com/ethos-works/ethos-eigensdk-go/pull/75
 func (w *ELChainWriter) RegisterAsOperator(ctx context.Context, operator types.Operator) (*gethtypes.Receipt, error) {
 	w.logger.Infof("registering operator %s to EigenLayer", operator.Address)
 	opDetails := delegationmanager.IDelegationManagerOperatorDetails{
